@@ -3,23 +3,26 @@ import styled, { css } from "styled-components";
 
 const ToggleStyle = styled.section`
   position: relative;
+  top: 40px;
   background-color: ${({ theme }) => theme.color.main};
   color: ${({ theme }) => theme.color.darkGray};
   font-size: 16px;
   border-radius: 20px;
   height: 48px;
   width: 128px;
+  /* cursor: pointer; */
+  p {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 3;
+  }
 `;
-const Text = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 3;
-`;
+
 const ToggleColor = styled.div<{ toggleClick: boolean }>`
   top: 5%;
   left: 2%; // => 48%
@@ -42,9 +45,9 @@ function Toggle() {
   const handleClickToggle = () => setIsClick(!isClick);
   return (
     <ToggleStyle onClick={handleClickToggle}>
-      <Text>
+      <p>
         <span>메모</span> <span>토글</span>
-      </Text>
+      </p>
       <ToggleColor toggleClick={isClick} data-testId="toggle" />
     </ToggleStyle>
   );

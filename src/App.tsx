@@ -1,5 +1,9 @@
 import AppWrapper from "./components/AppWrapper";
+import Input from "./components/Input";
 import Login from "./components/Login";
+import Current from "./components/Memo/Current";
+import Memo from "./components/Memo/Memo";
+import Prev from "./components/Memo/Prev";
 import Toggle from "./components/Toggle";
 
 function App() {
@@ -7,6 +11,12 @@ function App() {
     <AppWrapper>
       <Toggle />
       <Login />
+      <Memo>
+        <Prev />
+        <Current />
+      </Memo>
+
+      <Input />
     </AppWrapper>
   );
 }
