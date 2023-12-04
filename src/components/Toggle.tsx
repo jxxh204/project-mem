@@ -45,7 +45,7 @@ function Toggle() {
       <Text>
         <span>메모</span> <span>토글</span>
       </Text>
-      <ToggleColor toggleClick={isClick} />
+      <ToggleColor toggleClick={isClick} data-testId="toggle" />
     </ToggleStyle>
   );
 }

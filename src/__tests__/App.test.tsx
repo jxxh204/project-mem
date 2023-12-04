@@ -1,13 +1,20 @@
-// Imports
+// Importsui
 import { render, screen } from "@testing-library/react";
 
 // To Test
 import App from "../App";
+import { ThemeProvider } from "styled-components";
+import theme from "../styles/theme";
 
 // Tests
+
 test("Renders main page correctly", async () => {
   // Setup
-  render(<App />);
+  render(
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  );
   //   const buttonCount = await screen.findByRole("button");
   const isToggle = await screen.queryByText(/토글/);
   expect(isToggle).toBeDefined();
