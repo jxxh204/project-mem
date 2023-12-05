@@ -23,11 +23,11 @@ const ToggleStyle = styled.section`
   }
 `;
 
-const ToggleColor = styled.div<{ toggleClick: boolean }>`
+const ToggleColor = styled.div<{ $isToggleClick: boolean }>`
   top: 5%;
   left: 2%; // => 48%
   ${(props) =>
-    props.toggleClick &&
+    props.$isToggleClick &&
     css`
       left: 48%;
     `}
@@ -48,7 +48,7 @@ function Toggle() {
       <p>
         <span>메모</span> <span>토글</span>
       </p>
-      <ToggleColor toggleClick={isClick} data-testId="toggle" />
+      <ToggleColor $isToggleClick={isClick} data-testid="toggle" />
     </ToggleStyle>
   );
 }
