@@ -1,4 +1,4 @@
-function Memo(children: { children: React.ReactNode }) {
+function Memo({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 

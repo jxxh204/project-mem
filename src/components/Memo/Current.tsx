@@ -1,5 +1,5 @@
 function Current() {
-  return <></>;
+  return <>current</>;
 }
 
 export default Current;
