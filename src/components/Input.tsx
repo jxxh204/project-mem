@@ -1,4 +1,3 @@
-import { EventHandler } from "react";
 import styled from "styled-components";
 
 const Text = styled.input``;
