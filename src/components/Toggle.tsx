@@ -1,9 +1,7 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 
-const ToggleStyle = styled.section`
-  position: relative;
-  top: 40px;
+const ToggleWrap = styled.section`
   background-color: ${({ theme }) => theme.color.main};
   color: ${({ theme }) => theme.color.darkGray};
   font-size: 16px;
@@ -22,8 +20,13 @@ const ToggleStyle = styled.section`
     z-index: 3;
   }
 `;
-
+const ToggleStyle = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
 const ToggleColor = styled.div<{ $isToggleClick: boolean }>`
+  position: absolute;
   top: 5%;
   left: 2%; // => 48%
   ${(props) =>
@@ -36,7 +39,6 @@ const ToggleColor = styled.div<{ $isToggleClick: boolean }>`
   border-radius: 20px;
   height: 90%;
   width: 50%;
-  position: absolute;
   z-index: 2;
 `;
 
@@ -44,12 +46,14 @@ function Toggle() {
   const [isClick, setIsClick] = useState(false); // context로 변경하기.
   const handleClickToggle = () => setIsClick(!isClick);
   return (
-    <ToggleStyle onClick={handleClickToggle}>
-      <p>
-        <span>메모</span> <span>토글</span>
-      </p>
-      <ToggleColor $isToggleClick={isClick} data-testid="toggle" />
-    </ToggleStyle>
+    <ToggleWrap onClick={handleClickToggle}>
+      <ToggleStyle>
+        <p>
+          <span>메모</span> <span>토글</span>
+        </p>
+        <ToggleColor $isToggleClick={isClick} data-testid="toggle" />
+      </ToggleStyle>
+    </ToggleWrap>
   );
 }
 
