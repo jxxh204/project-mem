@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 const Text = styled.input``;
 const Submit = styled.input``;
-//엔터를 자동으로 넣기위해 submit 사용
+
 function Input() {
   const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
   };
   return (
     <>
-      <Text type="text"></Text>
+      <Text placeholder="당신의 경험을 메모해주세요" type="text"></Text>
       <Submit type="submit" onClick={handleSubmit}></Submit>
     </>
   );

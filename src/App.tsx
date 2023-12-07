@@ -1,5 +1,6 @@
 import AppWrapper from "./components/AppWrapper";
-import Input from "./components/Input";
+import Bottom from "./components/Bottom";
+
 import Login from "./components/Login";
 import Current from "./components/Memo/Current";
 import Memo from "./components/Memo/Memo";
@@ -17,7 +18,10 @@ function App() {
         <Current />
       </Memo>
 
-      <Input />
+      <Bottom>
+        <Bottom.Input />
+        <Bottom.Profile />
+      </Bottom>
     </AppWrapper>
   );
 }
