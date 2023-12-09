@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const PrevStyle = styled.div`
+const TempStyle = styled.div`
   background-color: ${({ theme }) => theme.color.light};
   color: ${({ theme }) => theme.color.darkGray};
   width: 100%;
@@ -14,21 +14,21 @@ const PrevStyle = styled.div`
   }
 `;
 
-function Prev() {
+function Temp() {
   const contents = [
     { index: 0, content: "홍대 입구역" },
     { index: 1, content: "삼겹살" },
     { index: 2, content: "또 뭐 없나" },
   ];
   return (
-    <PrevStyle>
+    <TempStyle>
       <ul>
         {contents.map((value, index) => (
           <li key={index}>{value.content}</li>
         ))}
       </ul>
-    </PrevStyle>
+    </TempStyle>
   );
 }
 
-export default Prev;
+export default Temp;
