@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { useMemoContext } from "../../contexts/memo";
 
-const SaveStyle = styled.div`
+const TempStyle = styled.div`
   background-color: white;
   color: ${({ theme }) => theme.color.darkGray};
   border: solid 1px ${({ theme }) => theme.color.darkGray};
@@ -10,8 +11,18 @@ const SaveStyle = styled.div`
   border-radius: 15px;
 `;
 
-function Save() {
-  return <SaveStyle>save</SaveStyle>;
+function Temp() {
+  const context = useMemoContext();
+
+  return (
+    <TempStyle>
+      <ul>
+        {context?.tempText.map((text, index) => (
+          <li key={index}>{text}</li>
+        ))}
+      </ul>
+    </TempStyle>
+  );
 }
 
-export default Save;
+export default Temp;

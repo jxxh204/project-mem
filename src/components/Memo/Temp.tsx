@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const TempStyle = styled.div`
+const SaveStyle = styled.div`
   background-color: ${({ theme }) => theme.color.light};
   color: ${({ theme }) => theme.color.darkGray};
   width: 100%;
@@ -14,21 +14,21 @@ const TempStyle = styled.div`
   }
 `;
 
-function Temp() {
+function Save() {
   const contents = [
     { index: 0, content: "홍대 입구역" },
     { index: 1, content: "삼겹살" },
     { index: 2, content: "또 뭐 없나" },
   ];
   return (
-    <TempStyle>
+    <SaveStyle>
       <ul>
         {contents.map((value, index) => (
           <li key={index}>{value.content}</li>
         ))}
       </ul>
-    </TempStyle>
+    </SaveStyle>
   );
 }
 
-export default Temp;
+export default Save;

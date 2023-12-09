@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SendImage from "../../assets/send.svg";
 import { useState } from "react";
+import { useMemoContext } from "../../contexts/memo";
 
 const InputWarp = styled.form`
   width: 90%;
@@ -32,14 +33,15 @@ const Submit = styled.input`
 `;
 
 function Input() {
-  const [inputText, setInputText] = useState("");
+  const [text, setText] = useState("");
+  const context = useMemoContext();
+
   const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    alert("개발중");
-    // setInputText()
+    context?.addTempText(text);
   };
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setInputText(e.target.value);
+    setText(e.target.value);
 
   return (
     <InputWarp>
@@ -53,7 +55,7 @@ function Input() {
         src={SendImage}
         name="submit"
         alt="메모 입력 버튼"
-        disabled={inputText ? false : true}
+        disabled={text ? false : true}
         onClick={handleSubmit}
       ></Submit>
     </InputWarp>
