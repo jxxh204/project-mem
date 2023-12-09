@@ -13,8 +13,9 @@ const MaxWidth = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  padding: 20px 0;
   max-width: 640px;
-  width: 100%;
+  width: 85%;
   height: 100%;
 `;
 

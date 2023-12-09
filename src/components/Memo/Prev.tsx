@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-const PrevStyle = styled.section`
+const PrevStyle = styled.div`
   background-color: ${({ theme }) => theme.color.light};
   color: ${({ theme }) => theme.color.darkGray};
-  width: 85%;
+  width: 100%;
   border-radius: 15px;
   font-size: 16px;
-  padding: 15px 15px;
+  padding: 15px;
   ul {
     display: flex;
     flex-direction: column;

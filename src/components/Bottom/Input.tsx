@@ -3,7 +3,7 @@ import SendImage from "../../assets/send.svg";
 import { useState } from "react";
 
 const InputWarp = styled.form`
-  width: 80%;
+  width: 90%;
   height: 58px;
   display: flex;
   flex-direction: row;

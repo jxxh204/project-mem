@@ -3,7 +3,7 @@ import Bottom from "./components/Bottom";
 
 import Login from "./components/Login";
 import Current from "./components/Memo/Current";
-import Memo from "./components/Memo/Memo";
+import Memo from "./components/Memo";
 import Prev from "./components/Memo/Prev";
 import Toggle from "./components/Toggle";
 
