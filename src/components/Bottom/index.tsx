@@ -4,7 +4,7 @@ import Profile from "./Profile";
 
 //엔터를 자동으로 넣기위해 submit 사용
 const BottomStyle = styled.section`
-  width: 92%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
