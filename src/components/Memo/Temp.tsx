@@ -1,34 +1,29 @@
 import styled from "styled-components";
+import { useMemoContext } from "../../contexts/memo";
 
-const SaveStyle = styled.div`
-  background-color: ${({ theme }) => theme.color.light};
+const TempStyle = styled.ul`
+  background-color: white;
   color: ${({ theme }) => theme.color.darkGray};
+  border: solid 1px ${({ theme }) => theme.color.darkGray};
   width: 100%;
-  border-radius: 15px;
   font-size: 16px;
   padding: 15px;
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
-function Save() {
-  const contents = [
-    { index: 0, content: "홍대 입구역" },
-    { index: 1, content: "삼겹살" },
-    { index: 2, content: "또 뭐 없나" },
-  ];
+function Temp() {
+  const context = useMemoContext();
+
   return (
-    <SaveStyle>
-      <ul>
-        {contents.map((value, index) => (
-          <li key={index}>{value.content}</li>
-        ))}
-      </ul>
-    </SaveStyle>
+    <TempStyle>
+      {context?.tempText.length
+        ? context?.tempText.map((text, index) => <li key={index}>{text}</li>)
+        : "메모를 입력해주세요. (비어있어서 일단 넣음)"}
+    </TempStyle>
   );
 }
 
-export default Save;
+export default Temp;

@@ -16,8 +16,8 @@ function App() {
         <Login />
         {/* 메모로 감쌀필요가 있을지. */}
         <Memo>
-          <Temp />
           <Save />
+          <Temp />
         </Memo>
 
         <Bottom>

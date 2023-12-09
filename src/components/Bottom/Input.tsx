@@ -36,15 +36,18 @@ function Input() {
   const [text, setText] = useState("");
   const context = useMemoContext();
 
-  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const textElement = e.currentTarget[0] as HTMLInputElement;
     context?.addTempText(text);
+    textElement.value = "";
+    setText("");
   };
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
     setText(e.target.value);
 
   return (
-    <InputWarp>
+    <InputWarp onSubmit={handleSubmit}>
       <Text
         placeholder="당신의 경험을 메모해주세요"
         type="text"
@@ -56,7 +59,6 @@ function Input() {
         name="submit"
         alt="메모 입력 버튼"
         disabled={text ? false : true}
-        onClick={handleSubmit}
       ></Submit>
     </InputWarp>
   );
