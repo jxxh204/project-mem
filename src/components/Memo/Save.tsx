@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CurrentStyle = styled.div`
+const SaveStyle = styled.div`
   background-color: white;
   color: ${({ theme }) => theme.color.darkGray};
   border: solid 1px ${({ theme }) => theme.color.darkGray};
@@ -10,8 +10,8 @@ const CurrentStyle = styled.div`
   border-radius: 15px;
 `;
 
-function Current() {
-  return <CurrentStyle>current</CurrentStyle>;
+function Save() {
+  return <SaveStyle>save</SaveStyle>;
 }
 
-export default Current;
+export default Save;

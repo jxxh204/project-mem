@@ -2,26 +2,29 @@ import AppWrapper from "./components/AppWrapper";
 import Bottom from "./components/Bottom";
 
 import Login from "./components/Login";
-import Current from "./components/Memo/Current";
+import Save from "./components/Memo/Save";
 import Memo from "./components/Memo";
-import Prev from "./components/Memo/Prev";
+import Temp from "./components/Memo/Temp";
 import Toggle from "./components/Toggle";
+import { MemoProvider } from "./contexts/memo";
 
 function App() {
   return (
     <AppWrapper>
-      <Toggle />
-      <Login />
-      {/* 메모로 감쌀필요가 있을지. */}
-      <Memo>
-        <Prev />
-        <Current />
-      </Memo>
+      <MemoProvider>
+        <Toggle />
+        <Login />
+        {/* 메모로 감쌀필요가 있을지. */}
+        <Memo>
+          <Temp />
+          <Save />
+        </Memo>
 
-      <Bottom>
-        <Bottom.Input />
-        <Bottom.Profile />
-      </Bottom>
+        <Bottom>
+          <Bottom.Input />
+          <Bottom.Profile />
+        </Bottom>
+      </MemoProvider>
     </AppWrapper>
   );
 }
