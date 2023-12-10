@@ -7,11 +7,13 @@ const SaveStyle = styled.article`
   gap: 14px;
   width: 100%;
   font-size: 16px;
-  ul {
+  div {
     width: 100%;
     background-color: ${({ theme }) => theme.color.light};
     color: ${({ theme }) => theme.color.darkGray};
     border-radius: 15px;
+  }
+  ul {
     list-style-type: none;
     display: flex;
     flex-direction: column;
@@ -19,6 +21,7 @@ const SaveStyle = styled.article`
     padding: 15px;
   }
 `;
+
 const TextStyle = styled.li``;
 
 function Save() {
@@ -31,7 +34,9 @@ function Save() {
   return (
     <SaveStyle>
       {context?.saveText.map((value, index) => (
-        <ul key={"saveParagraph" + index}>{mappingValue(value)}</ul>
+        <div>
+          <ul key={"saveParagraph" + index}>{mappingValue(value)}</ul>
+        </div>
       ))}
     </SaveStyle>
   );
