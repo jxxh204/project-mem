@@ -15,7 +15,7 @@ const MaxWidth = styled.div`
   gap: 20px;
   padding: 20px 0;
   max-width: 640px;
-  width: 85%;
+  width: 90%;
   height: 100%;
 `;
 

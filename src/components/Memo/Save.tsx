@@ -1,32 +1,38 @@
 import styled from "styled-components";
+import { useMemoContext } from "../../contexts/memo";
 
-const SaveStyle = styled.div`
-  background-color: ${({ theme }) => theme.color.light};
-  color: ${({ theme }) => theme.color.darkGray};
+const SaveStyle = styled.article`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   width: 100%;
-  border-radius: 15px;
   font-size: 16px;
-  padding: 15px;
   ul {
+    width: 100%;
+    background-color: ${({ theme }) => theme.color.light};
+    color: ${({ theme }) => theme.color.darkGray};
+    border-radius: 15px;
+    list-style-type: none;
     display: flex;
     flex-direction: column;
     gap: 14px;
+    padding: 15px;
   }
 `;
+const TextStyle = styled.li``;
 
 function Save() {
-  const contents = [
-    { index: 0, content: "홍대 입구역" },
-    { index: 1, content: "삼겹살" },
-    { index: 2, content: "또 뭐 없나" },
-  ];
+  const context = useMemoContext();
+  const mappingValue = (value: string[]) => {
+    return value.map((text, index) => (
+      <TextStyle key={"saveText" + index}>{text}</TextStyle>
+    ));
+  };
   return (
     <SaveStyle>
-      <ul>
-        {contents.map((value, index) => (
-          <li key={index}>{value.content}</li>
-        ))}
-      </ul>
+      {context?.saveText.map((value, index) => (
+        <ul key={"saveParagraph" + index}>{mappingValue(value)}</ul>
+      ))}
     </SaveStyle>
   );
 }
