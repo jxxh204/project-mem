@@ -6,25 +6,30 @@ import Save from "./components/Memo/Save";
 import Memo from "./components/Memo";
 import Temp from "./components/Memo/Temp";
 import Toggle from "./components/Toggle";
-import { MemoProvider } from "./contexts/memo";
+import Search from "./components/Search";
+import { useToggleContext } from "./contexts/toggle";
 
 function App() {
+  const context = useToggleContext();
+
   return (
     <AppWrapper>
-      <MemoProvider>
-        <Toggle />
-        <Login />
-        {/* 메모로 감쌀필요가 있을지. */}
+      <Toggle />
+      <Login />
+      {/* Body */}
+      {!context.toggle ? (
         <Memo>
           <Save />
           <Temp />
         </Memo>
+      ) : (
+        <Search></Search>
+      )}
 
-        <Bottom>
-          <Bottom.Input />
-          <Bottom.Profile />
-        </Bottom>
-      </MemoProvider>
+      <Bottom>
+        <Bottom.Input />
+        <Bottom.Profile />
+      </Bottom>
     </AppWrapper>
   );
 }
