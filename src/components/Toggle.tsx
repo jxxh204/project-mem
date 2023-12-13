@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled, { css } from "styled-components";
 import { useToggleContext } from "../contexts/toggle";
 
@@ -6,7 +5,7 @@ const ToggleWrap = styled.section`
   background-color: ${({ theme }) => theme.color.main};
   color: ${({ theme }) => theme.color.darkGray};
   font-size: 16px;
-  border-radius: 20px;
+  border-radius: 40px;
   height: 48px;
   width: 128px;
   /* cursor: pointer; */
@@ -28,18 +27,18 @@ const ToggleStyle = styled.div`
 `;
 const ToggleColor = styled.div<{ $isToggleClick: boolean }>`
   position: absolute;
-  top: 5%;
-  left: 2%; // => 48%
+  top: 8%;
+  left: 4%; // => 48%
   ${(props) =>
     props.$isToggleClick &&
     css`
-      left: 48%;
+      left: 50%;
     `}
   transition:all 0.2s;
   background-color: white;
-  border-radius: 20px;
-  height: 90%;
-  width: 50%;
+  border-radius: 40px;
+  height: 84%;
+  width: 46%;
   z-index: 2;
 `;
 
@@ -47,7 +46,6 @@ function Toggle() {
   const context = useToggleContext();
 
   const handleClickToggle = () => {
-    console.log(context.toggle);
     context.setToggle(!context.toggle);
   };
   return (
