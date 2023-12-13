@@ -36,12 +36,13 @@ function Temp() {
   const onClickEnter = () => {
     context?.addSaveText(context.tempText);
   };
+  if (!context?.tempText.length) return null;
   return (
     <TempStyle>
       <UlStyle>
-        {context?.tempText.length
-          ? context?.tempText.map((text, index) => <li key={index}>{text}</li>)
-          : "메모를 입력해주세요. (비어있어서 일단 넣음)"}
+        {context?.tempText.map((text, index) => (
+          <li key={index}>{text}</li>
+        ))}
         <li className="imageLi">
           <EnterImage
             onClick={onClickEnter}
