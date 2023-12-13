@@ -15,6 +15,12 @@ const UlStyle = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  .imageLi {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+  }
 `;
 
 const EnterImage = styled.img`
@@ -36,11 +42,13 @@ function Temp() {
         {context?.tempText.length
           ? context?.tempText.map((text, index) => <li key={index}>{text}</li>)
           : "메모를 입력해주세요. (비어있어서 일단 넣음)"}
-        <EnterImage
-          onClick={onClickEnter}
-          src={enterImage}
-          alt="임시 메모 등록 버튼"
-        />
+        <li className="imageLi">
+          <EnterImage
+            onClick={onClickEnter}
+            src={enterImage}
+            alt="임시 메모 등록 버튼"
+          />
+        </li>
       </UlStyle>
     </TempStyle>
   );
