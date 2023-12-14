@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import SendImage from "../../assets/send.svg";
+import SendImage from "@/assets/send.svg";
 import { useState } from "react";
-import { useMemoContext } from "../../contexts/memo";
+import { useMemoContext } from "@/contexts/memo";
 
 const InputWarp = styled.form`
   width: 90%;
@@ -52,6 +52,7 @@ function Input() {
         placeholder="당신의 경험을 메모해주세요"
         type="text"
         onChange={onChangeHandler}
+        data-testid="memo-text"
       ></Text>
       <Submit
         type="Image"
@@ -59,6 +60,7 @@ function Input() {
         name="submit"
         alt="메모 입력 버튼"
         disabled={text ? false : true}
+        data-testid="memo-submit"
       ></Submit>
     </InputWarp>
   );

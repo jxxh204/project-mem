@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { useToggleContext } from "../contexts/toggle";
+import { useToggleContext } from "@/contexts/toggle";
 
 const ToggleWrap = styled.section`
   background-color: ${({ theme }) => theme.color.main};

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useMemoContext } from "../../contexts/memo";
-import enterImage from "../../assets/enter.svg";
+import { useMemoContext } from "@/contexts/memo";
+import enterImage from "@/assets/enter.svg";
 const TempStyle = styled.article`
   width: 100%;
   background-color: white;
@@ -41,7 +41,9 @@ function Temp() {
     <TempStyle>
       <UlStyle>
         {context?.tempText.map((text, index) => (
-          <li key={index}>{text}</li>
+          <li data-testid={"temp-li" + index} key={index}>
+            {text}
+          </li>
         ))}
         <li className="imageLi">
           <EnterImage

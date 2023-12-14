@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useMemoContext } from "../../contexts/memo";
+import { useMemoContext } from "@/contexts/memo";
 
 const SaveStyle = styled.article`
   display: flex;
