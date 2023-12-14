@@ -2,9 +2,12 @@
 import { render, screen } from "@testing-library/react";
 
 // To Test
-import App from "../App";
+import App from "@/App";
 import { ThemeProvider } from "styled-components";
-import theme from "../styles/theme";
+import theme from "@/styles/theme";
+import { ToggleProvider } from "@/contexts/toggle";
+import { MemoProvider } from "@/contexts/memo";
+import GlobalStyle from "@/styles/GlobalStyle";
 
 // Tests
 
@@ -12,11 +15,16 @@ test("Renders main page correctly", async () => {
   // Setup
   render(
     <ThemeProvider theme={theme}>
-      <App />
+      <ToggleProvider>
+        <MemoProvider>
+          <GlobalStyle />
+          <App />
+        </MemoProvider>
+      </ToggleProvider>
     </ThemeProvider>
   );
   //   const buttonCount = await screen.findByRole("button");
-  const isToggle = await screen.queryByText(/토글/);
+  const isToggle = await screen.queryByText(/메모/);
   expect(isToggle).toBeDefined();
   //   // Pre Expecations
   //   expect(buttonCount.innerHTML).toBe("count is 0");
