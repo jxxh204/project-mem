@@ -1,31 +1,38 @@
 // Importsui
-import { fireEvent, render, screen } from "@testing-library/react";
+import Bottom from "@/components/Bottom";
+import Temp from "@/components/Memo/Temp";
+import { fireEvent, render } from "@testing-library/react";
 
 // To Test
-import App from "@/App";
 import { MemoProvider } from "@/contexts/memo";
 import { ToggleProvider } from "@/contexts/toggle";
 import { ThemeProvider } from "styled-components";
 import theme from "@/styles/theme";
-import GlobalStyle from "@/styles/GlobalStyle";
 
 // Tests
 
-test("input memo", async () => {
-  // Setup
-  render(
+const setup = () => {
+  return render(
     <ThemeProvider theme={theme}>
       <ToggleProvider>
         <MemoProvider>
-          <GlobalStyle />
-          <App />
+          <Bottom.Input />
         </MemoProvider>
       </ToggleProvider>
     </ThemeProvider>
   );
-  //   const buttonCount = await screen.findByRole("button");
-  const inputElement = await screen.queryByTestId("memo-text");
-  const submitButton = await screen.queryByTestId("memo-submit");
-  expect(inputElement?.nodeValue).toBe("테스트 메모1");
-  if (submitButton) fireEvent.click(submitButton);
+};
+describe("메모 관련 테스트", () => {
+  test("메모 입력 테스트", async () => {
+    const result = setup();
+    const inputText = result.getByPlaceholderText("당신의 경험을 메모해주세요");
+    expect(inputText).toBeInTheDocument();
+
+    fireEvent.change(inputText, { taget: { value: "메모1" } });
+    fireEvent.click(result.getByTestId("memo-submit"));
+
+    const TempComponent = render(<Temp />);
+    TempComponent.getByText("메모1");
+    console.log(TempComponent);
+  });
 });

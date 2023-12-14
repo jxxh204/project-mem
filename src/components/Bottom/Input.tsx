@@ -52,7 +52,7 @@ function Input() {
         placeholder="당신의 경험을 메모해주세요"
         type="text"
         onChange={onChangeHandler}
-        data-testid="memo-text"
+        aria-label="memo-text"
       ></Text>
       <Submit
         type="Image"

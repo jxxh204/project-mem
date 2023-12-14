@@ -41,9 +41,7 @@ function Temp() {
     <TempStyle>
       <UlStyle>
         {context?.tempText.map((text, index) => (
-          <li data-testid={"temp-li" + index} key={index}>
-            {text}
-          </li>
+          <li key={index}>{text}</li>
         ))}
         <li className="imageLi">
           <EnterImage
