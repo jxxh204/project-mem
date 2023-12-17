@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
   #root {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     /* 테마 적용할때 제거 */
