@@ -11,9 +11,11 @@ const GlobalStyle = createGlobalStyle`
 }
 
   #root {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
     /* 테마 적용할때 제거 */
     background-color: white;
     font-family: "Pretendard-Regular";
