@@ -36,4 +36,4 @@ function useMemoContext() {
   return context;
 }
 
-export { MemoProvider, useMemoContext };
+export { MemoProvider, useMemoContext, MemoContext };
