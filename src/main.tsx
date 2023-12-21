@@ -10,10 +10,6 @@ import { MemoProvider } from "./contexts/memo.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <meta
-      name="viewport"
-      content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"
-    />
     <ThemeProvider theme={Theme}>
       <ToggleProvider>
         <MemoProvider>

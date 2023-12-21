@@ -1,6 +1,6 @@
 // Importsui
-import Bottom from "@/components/Bottom";
-import Temp from "@/components/Memo/Temp";
+// import Bottom from "@/components/Bottom";
+// import Temp from "@/components/Memo/Temp";
 import { fireEvent, render } from "@testing-library/react";
 
 // To Test
@@ -8,15 +8,16 @@ import { MemoProvider } from "@/contexts/memo";
 import { ToggleProvider } from "@/contexts/toggle";
 import { ThemeProvider } from "styled-components";
 import theme from "@/styles/theme";
+import App from "@/App";
 
 // Tests
-
 const setup = () => {
   return render(
     <ThemeProvider theme={theme}>
       <ToggleProvider>
         <MemoProvider>
-          <Bottom.Input />
+          {/* <Bottom.Input /> */}
+          <App />
         </MemoProvider>
       </ToggleProvider>
     </ThemeProvider>
@@ -31,8 +32,6 @@ describe("메모 관련 테스트", () => {
     fireEvent.change(inputText, { taget: { value: "메모1" } });
     fireEvent.click(result.getByTestId("memo-submit"));
 
-    const TempComponent = render(<Temp />);
-    TempComponent.getByText("메모1");
-    console.log(TempComponent);
+    result.getByText("메모1");
   });
 });

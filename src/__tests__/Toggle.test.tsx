@@ -7,7 +7,8 @@ import theme from "@/styles/theme";
 import { ToggleProvider } from "@/contexts/toggle";
 import { MemoProvider } from "@/contexts/memo";
 import GlobalStyle from "@/styles/GlobalStyle";
-import App from "@/App";
+// import App from "@/App";
+import Toggle from "@/components/Toggle";
 
 // Tests
 test("Renders main page correctly", async () => {
@@ -16,7 +17,7 @@ test("Renders main page correctly", async () => {
       <ToggleProvider>
         <MemoProvider>
           <GlobalStyle />
-          <App />
+          <Toggle />
         </MemoProvider>
       </ToggleProvider>
     </ThemeProvider>
