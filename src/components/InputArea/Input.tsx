@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import SendImage from "@/assets/send.svg";
-import { useState } from "react";
 import { useMemoContext } from "@/contexts/memo";
 
 const InputWarp = styled.form`
@@ -33,25 +32,14 @@ const Submit = styled.input`
 `;
 
 function Input() {
-  const [text, setText] = useState("");
   const context = useMemoContext();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const textElement = e.currentTarget[0] as HTMLInputElement;
-    context?.addTempText(text);
-    textElement.value = "";
-    setText("");
-  };
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setText(e.target.value);
-
   return (
-    <InputWarp onSubmit={handleSubmit}>
+    <InputWarp onSubmit={context?.addTemp}>
       <Text
         placeholder="당신의 경험을 메모해주세요"
         type="text"
-        onChange={onChangeHandler}
+        onChange={context?.onChangeInput}
         aria-label="memo-text"
       ></Text>
       <Submit

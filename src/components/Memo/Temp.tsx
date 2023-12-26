@@ -39,7 +39,7 @@ function Temp() {
   if (!context?.tempText.length) return null;
   return (
     <TempStyle>
-      <UlStyle data-testid="tempList">
+      <UlStyle>
         {context?.tempText.map((text, index) => (
           <li key={index}>{text}</li>
         ))}

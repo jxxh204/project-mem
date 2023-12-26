@@ -1,17 +1,21 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 
 type ContextType = {
+  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  text: string;
+  addTemp: (e: React.FormEvent<HTMLFormElement>) => void;
   tempText: string[];
   saveText: Array<string>[];
-  addTempText: (text: string) => void;
+  confirmTemp: (text: string) => void;
   addSaveText: (text: string[]) => void;
 };
 const MemoContext = createContext<ContextType | null>(null);
 
 function MemoProvider({ children }: { children: ReactNode }) {
+  const [text, setText] = useState<string>("");
   const [tempText, setTempText] = useState<string[]>([]);
   const [saveText, setSaveText] = useState<Array<string>[]>([]);
-  const addTempText = (text: string) => {
+  const confirmTemp = (text: string) => {
     setTempText([...tempText, text]);
   };
   const addSaveText = (textArray: string[]) => {
@@ -19,10 +23,27 @@ function MemoProvider({ children }: { children: ReactNode }) {
     setSaveText([...saveText, textArray]);
     console.log(textArray, saveText);
   };
+  const addTemp = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const textElement = e.currentTarget[0] as HTMLInputElement;
+    confirmTemp(text);
+    textElement.value = "";
+    setText("");
+  };
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setText(e.target.value);
 
   return (
     <MemoContext.Provider
-      value={{ tempText, addTempText, saveText, addSaveText }}
+      value={{
+        onChangeInput,
+        text,
+        addTemp,
+        tempText,
+        confirmTemp,
+        saveText,
+        addSaveText,
+      }}
     >
       {children}
     </MemoContext.Provider>

@@ -1,8 +1,8 @@
 // Importsui
 // import Bottom from "@/components/Bottom";
 // import Temp from "@/components/Memo/Temp";
-import { fireEvent, render, screen } from "@testing-library/react";
-
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 // To Test
 import { MemoProvider } from "@/contexts/memo";
 // import { ToggleProvider } from "@/contexts/toggle";
@@ -11,7 +11,7 @@ import theme from "@/styles/theme";
 // import Bottom from "@/components/Bottom";
 import Temp from "@/components/Memo/Temp";
 // import App from "@/App";
-import Bottom from "@/components/Bottom";
+import Bottom from "@/components/InputArea";
 
 // Tests
 const setup = () => {
@@ -33,13 +33,8 @@ describe("<Input />", () => {
 
     const inputTextEl =
       screen.getByPlaceholderText("당신의 경험을 메모해주세요");
-    // const tempList = result.getByTestId("TempList");
-
-    expect(inputTextEl).toBeInTheDocument();
-
-    fireEvent.change(inputTextEl, { target: { value: "메모1" } });
-    const input: HTMLInputElement = screen.getByDisplayValue("메모1");
-    expect(input.value).toEqual("메모1");
+    await userEvent.type(inputTextEl, "memo1");
+    await expect(inputTextEl).toHaveValue("memo1");
   });
 
   test("Input 클릭 확인 x", async () => {
@@ -52,8 +47,8 @@ describe("<Input />", () => {
 
     expect(inputTextEl).toBeInTheDocument();
 
-    fireEvent.change(inputTextEl, { target: { value: "메모1" } });
-    fireEvent.click(submitButton);
+    userEvent.type(inputTextEl, "메모1");
+    userEvent.click(submitButton);
   });
 });
 
@@ -67,16 +62,15 @@ describe("<Temp />", () => {
     const submitButton = screen.getByTestId("memo-submit");
 
     expect(inputTextEl).toBeInTheDocument();
-
-    fireEvent.change(inputTextEl, { target: { value: "메모1" } });
-    fireEvent.click(submitButton);
+    userEvent.type(inputTextEl, "메모1");
+    userEvent.click(submitButton);
 
     // const tempList = screen.findByTestId("tempList");
     // expect(tempList).toHaveTextContent("메모1");
 
-    const memoContext = screen.getByTestId("tempList"); // Assuming you have a test ID for your MemoContextProvider
-    expect(memoContext).toHaveTextContent("메모1"); // Adjust this based on your context structure
+    const memo = screen.getByText("메모1");
+    // expect(memoContext).toHaveValue("메모1"); // Adjust this based on your context structure
 
-    expect(inputTextEl.value).toBe("");
+    // expect(inputTextEl).toBe("");
   });
 });

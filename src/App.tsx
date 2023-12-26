@@ -1,5 +1,5 @@
 import AppWrapper from "./components/AppWrapper";
-import Bottom from "./components/Bottom";
+import Bottom from "./components/InputArea";
 
 import Login from "./components/Login";
 import Save from "./components/Memo/Save";
