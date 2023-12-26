@@ -7,7 +7,7 @@ type ContextType = {
   tempText: string[];
   saveText: Array<string>[];
   confirmTemp: (text: string) => void;
-  addSaveText: (text: string[]) => void;
+  onClickEnterTemp: React.MouseEventHandler<HTMLImageElement>;
 };
 const MemoContext = createContext<ContextType | null>(null);
 
@@ -18,10 +18,9 @@ function MemoProvider({ children }: { children: ReactNode }) {
   const confirmTemp = (text: string) => {
     setTempText([...tempText, text]);
   };
-  const addSaveText = (textArray: string[]) => {
+  const onClickEnterTemp = () => {
     setTempText([]);
-    setSaveText([...saveText, textArray]);
-    console.log(textArray, saveText);
+    setSaveText([...saveText, tempText]);
   };
   const addTemp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,7 +41,7 @@ function MemoProvider({ children }: { children: ReactNode }) {
         tempText,
         confirmTemp,
         saveText,
-        addSaveText,
+        onClickEnterTemp,
       }}
     >
       {children}

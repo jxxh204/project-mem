@@ -33,19 +33,17 @@ const EnterImage = styled.img`
 
 function Temp() {
   const context = useMemoContext();
-  const onClickEnter = () => {
-    context?.addSaveText(context.tempText);
-  };
+
   if (!context?.tempText.length) return null;
   return (
     <TempStyle>
-      <UlStyle>
+      <UlStyle data-testid="temp-ul">
         {context?.tempText.map((text, index) => (
           <li key={index}>{text}</li>
         ))}
         <li className="imageLi">
           <EnterImage
-            onClick={onClickEnter}
+            onClick={context?.onClickEnterTemp}
             src={enterImage}
             alt="임시 메모 등록 버튼"
           />

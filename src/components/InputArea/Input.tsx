@@ -40,14 +40,14 @@ function Input() {
         placeholder="당신의 경험을 메모해주세요"
         type="text"
         onChange={context?.onChangeInput}
-        aria-label="memo-text"
+        value={context?.text}
       ></Text>
       <Submit
         type="Image"
         src={SendImage}
         name="submit"
         alt="메모 입력 버튼"
-        disabled={text ? false : true}
+        disabled={context?.text ? false : true}
         data-testid="memo-submit"
       ></Submit>
     </InputWarp>
