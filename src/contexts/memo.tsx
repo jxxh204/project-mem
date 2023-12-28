@@ -24,9 +24,9 @@ function MemoProvider({ children }: { children: ReactNode }) {
   };
   const addTemp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const textElement = e.currentTarget[0] as HTMLInputElement;
+    // const textElement = e.currentTarget[0] as HTMLInputElement;
     confirmTemp(text);
-    textElement.value = "";
+    // textElement.value = "";
     setText("");
   };
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) =>

@@ -1,7 +1,7 @@
 // GlobalStyle.jsx
 
 import { createGlobalStyle } from "styled-components";
-
+import theme from "./theme";
 const GlobalStyle = createGlobalStyle`
 @font-face {
     font-family: 'Pretendard-Regular';
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     /* 테마 적용할때 제거 */
     background-color: white;
     font-family: "Pretendard-Regular";
-    color: ${({ theme }) => theme.color.darkGray};
+    color: ${theme.color.darkGray}
   }
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
