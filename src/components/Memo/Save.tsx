@@ -32,10 +32,10 @@ function Save() {
     ));
   };
   return (
-    <SaveStyle>
+    <SaveStyle data-testid="saveList">
       {context?.saveText.map((value, index) => (
-        <div>
-          <ul key={"saveParagraph" + index}>{mappingValue(value)}</ul>
+        <div key={"saveParagraph" + index}>
+          <ul>{mappingValue(value)}</ul>
         </div>
       ))}
     </SaveStyle>

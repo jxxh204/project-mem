@@ -7,7 +7,7 @@ type ContextType = {
   tempText: string[];
   saveText: Array<string>[];
   confirmTemp: (text: string) => void;
-  onClickEnterTemp: React.MouseEventHandler<HTMLImageElement>;
+  onClickEnterTemp: React.MouseEventHandler<HTMLButtonElement>;
 };
 const MemoContext = createContext<ContextType | null>(null);
 

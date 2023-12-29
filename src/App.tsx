@@ -27,7 +27,7 @@ function App() {
     <AppWrapper>
       <Toggle />
 
-      {!isLogin ? <Login /> : null}
+      {/* {!isLogin ? <Login /> : null} */}
       {/* Body */}
       {!context.toggle ? (
         <Memo>
@@ -38,12 +38,12 @@ function App() {
         <Search></Search>
       )}
 
-      {isLogin ? (
-        <Bottom>
-          <Bottom.Input />
-          <Bottom.Profile />
-        </Bottom>
-      ) : null}
+      {/* {isLogin ? ( */}
+      <Bottom>
+        <Bottom.Input />
+        <Bottom.Profile />
+      </Bottom>
+      {/* ) : null} */}
     </AppWrapper>
   );
 }

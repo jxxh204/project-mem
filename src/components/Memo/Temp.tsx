@@ -41,12 +41,12 @@ function Temp() {
   if (!context?.tempText.length) return null;
   return (
     <TempStyle>
-      <UlStyle>
+      <UlStyle data-testid="tempList">
         {context?.tempText.map((text, index) => (
           <li key={index}>{text}</li>
         ))}
         <li className="imageLi">
-          <Button onClick={context?.onClickEnterTemp}>
+          <Button onClick={context?.onClickEnterTemp} data-testid="tempButton">
             <ButtonImg src={enterImage} alt="임시 메모 등록 버튼" />
           </Button>
         </li>

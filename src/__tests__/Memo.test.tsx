@@ -1,8 +1,8 @@
 // Importsui
 // import Bottom from "@/components/Bottom";
 // import Temp from "@/components/Memo/Temp";
-import { render, screen, fireEvent } from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 // To Test
 import { MemoProvider } from "@/contexts/memo";
 // import { ToggleProvider } from "@/contexts/toggle";
@@ -12,6 +12,7 @@ import Theme from "@/styles/theme";
 import Temp from "@/components/Memo/Temp";
 // import App from "@/App";
 import Bottom from "@/components/InputArea";
+import Save from "@/components/Memo/Save";
 
 // Tests
 const setup = () => {
@@ -19,6 +20,7 @@ const setup = () => {
     <ThemeProvider theme={Theme}>
       {/* <ToggleProvider> */}
       <MemoProvider>
+        <Save />
         <Temp />
         <Bottom.Input />
         {/* <App /> */}
@@ -47,36 +49,59 @@ describe("<Input />", () => {
 });
 
 describe("<Temp />", () => {
+  const Temp등록 = async (tempname: string) => {
+    const submitButton = screen.getByTestId("memo-submit");
+    const inputTextEl =
+      screen.getByPlaceholderText("당신의 경험을 메모해주세요");
+    await fireEvent.change(inputTextEl, { target: { value: tempname } }); // 입력
+    expect(inputTextEl).toHaveValue(tempname); // 입력확인
+    await fireEvent.submit(submitButton); //클릭
+  };
+
+  const TempList = async () => {
+    const tempUl: HTMLDataListElement = screen.getByTestId("tempList");
+    const { getAllByRole } = within(tempUl);
+    const items = getAllByRole("listitem");
+    return items;
+  };
+  const SaveList = async () => {
+    const saveUl: HTMLDataListElement = screen.getByTestId("saveList");
+    const saveItems = within(saveUl).getAllByRole("listitem");
+    return saveItems;
+  };
   test("Temp가 생성되었는지 확인합니다.", async () => {
     setup();
     const temp = screen.findAllByText("memo1");
     expect(temp).toBeDefined();
   });
 
-  test("Temp 여러개가 생성되는지 확인합니다.", async () => {
+  test("Temp 여러개가 생성되는지 확인하고 등록 버튼작동을 테스트합니다.", async () => {
     setup();
-    const submitButton = screen.getByTestId("memo-submit");
-    const inputTextEl =
-      screen.getByPlaceholderText("당신의 경험을 메모해주세요");
 
-    const Temp등록 = async (tempname: string) => {
-      await fireEvent.change(inputTextEl, { target: { value: tempname } }); // 입력
-      expect(inputTextEl).toHaveValue(tempname); // 입력확인
-      await fireEvent.submit(submitButton); //클릭
-    };
     const temp = screen.findAllByText("memo1");
     expect(temp).toBeDefined();
 
     await Temp등록("memo1");
     await Temp등록("memo2");
     await Temp등록("memo3");
+    const tempList = await TempList();
+    expect(tempList.length).toBe(4);
 
-    // const tempUl: HTMLDataListElement = screen.getByRole("list", {
-    //   name: /temp/i,
-    // });
+    const tempEnter = await screen.getByTestId("tempButton");
+    await userEvent.click(tempEnter);
+    expect(tempList.length).toBe(4);
+  });
+  test("Save가 잘 등록되었는지 확인합니다.", async () => {
+    setup();
 
-    const elements = await screen.findAllByText(/memo/);
-    const fields = Array.from(elements).map((el) => el.textContent ?? "");
-    expect(fields).toHaveLength(3);
+    await Temp등록("memo1");
+    await Temp등록("memo2");
+    await Temp등록("memo3");
+
+    const tempEnter = await screen.getByTestId("tempButton");
+    await userEvent.click(tempEnter);
+
+    const saveList = await SaveList();
+    expect(saveList.length).toBe(3);
   });
 });
