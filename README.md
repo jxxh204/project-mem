@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+# Project-Mem
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## **Description**
 
-Currently, two official plugins are available:
+- 메모 앱입니다. 내가 했던 메모를 기억하기 힘든 분들을 위해 메모를 쉽게 검색할 수 있는 기능이 있는 메모앱 입니다.
+- 웹으로 제작 후 PWA를 사용하거나 React-Native등을 사용하여 앱으로 개발할 예정입니다.
+- 개발은 TDD 방법론으로 개발 중입니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Skills**
 
-## Expanding the ESLint configuration
+- Vite + React
+- jest
+- styled-components
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+I**ssue**
 
-- Configure the top-level `parserOptions` property like this:
+## **Environment**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+**Deployment environment**
+
+- vercel을 사용하여 CI/CD로 배포중입니다.
+
+### **Installation**
+
+```
+yarn && npm i
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```
+yarn dev && npm run dev
+```
+
+### **Prerequisite**
+
+node version v20.10.0 사용 중.
