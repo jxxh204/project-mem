@@ -23,12 +23,16 @@ const UlStyle = styled.ul`
   }
 `;
 
-const EnterImage = styled.img`
-  width: 24px;
-  height: 24px;
-  padding: 12px 20px;
+const Button = styled.button`
+  padding: 8px 16px;
   border-radius: 24px;
   background-color: ${({ theme }) => theme.color.darkGray};
+`;
+const ButtonImg = styled.img`
+  /* width: 24px; */
+  height: 24px;
+  margin-bottom: -4px;
+  margin-top: 1px;
 `;
 
 function Temp() {
@@ -37,16 +41,14 @@ function Temp() {
   if (!context?.tempText.length) return null;
   return (
     <TempStyle>
-      <UlStyle aria-labelledby="temp-heading">
+      <UlStyle>
         {context?.tempText.map((text, index) => (
           <li key={index}>{text}</li>
         ))}
         <li className="imageLi">
-          <EnterImage
-            onClick={context?.onClickEnterTemp}
-            src={enterImage}
-            alt="임시 메모 등록 버튼"
-          />
+          <Button onClick={context?.onClickEnterTemp}>
+            <ButtonImg src={enterImage} alt="임시 메모 등록 버튼" />
+          </Button>
         </li>
       </UlStyle>
     </TempStyle>
