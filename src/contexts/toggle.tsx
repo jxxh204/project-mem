@@ -4,15 +4,19 @@ import { createContext, useContext, useState } from "react";
 // type Toggle = "login" | "memo" | "search";
 type ToggleType = {
   toggle: boolean;
-  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  handleClickToggle: React.MouseEventHandler<HTMLElement>;
 };
 
 const ToggleContext = createContext<ToggleType | null>(null);
 
 function ToggleProvider({ children }: { children: React.ReactNode }) {
   const [toggle, setToggle] = useState<boolean>(false);
+
+  const handleClickToggle = () => {
+    setToggle(!toggle);
+  };
   return (
-    <ToggleContext.Provider value={{ toggle, setToggle }}>
+    <ToggleContext.Provider value={{ toggle, handleClickToggle }}>
       {children}
     </ToggleContext.Provider>
   );

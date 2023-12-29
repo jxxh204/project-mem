@@ -9,6 +9,7 @@ import { MemoProvider } from "@/contexts/memo";
 import GlobalStyle from "@/styles/GlobalStyle";
 // import App from "@/App";
 import Toggle from "@/components/Toggle";
+import Search from "@/components/Search";
 
 // Tests
 test("Renders main page correctly", async () => {
@@ -18,6 +19,7 @@ test("Renders main page correctly", async () => {
         <MemoProvider>
           <GlobalStyle />
           <Toggle />
+          <Search />
         </MemoProvider>
       </ToggleProvider>
     </ThemeProvider>

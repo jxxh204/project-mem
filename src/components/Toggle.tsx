@@ -45,11 +45,8 @@ const ToggleColor = styled.div<{ $isToggleClick: boolean }>`
 function Toggle() {
   const context = useToggleContext();
 
-  const handleClickToggle = () => {
-    context.setToggle(!context.toggle);
-  };
   return (
-    <ToggleWrap onClick={handleClickToggle}>
+    <ToggleWrap onClick={context.handleClickToggle}>
       <ToggleStyle>
         <p>
           <span>메모</span> <span>검색</span>
