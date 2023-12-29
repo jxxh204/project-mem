@@ -48,7 +48,7 @@ function Input() {
         name="submit"
         alt="메모 입력 버튼"
         disabled={context?.text ? false : true}
-        data-testid="memo-submit"
+        data-testid="input-submit"
       ></Submit>
     </InputWarp>
   );

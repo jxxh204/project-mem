@@ -1,17 +1,10 @@
-// Importsui
-// import Bottom from "@/components/Bottom";
-// import Temp from "@/components/Memo/Temp";
 import { render, screen, fireEvent, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-// To Test
 import { MemoProvider } from "@/contexts/memo";
-// import { ToggleProvider } from "@/contexts/toggle";
 import { ThemeProvider } from "styled-components";
 import Theme from "@/styles/theme";
-// import Bottom from "@/components/Bottom";
 import Temp from "@/components/Memo/Temp";
-// import App from "@/App";
-import Bottom from "@/components/InputArea";
+import InputArea from "@/components/InputArea";
 import Save from "@/components/Memo/Save";
 
 // Tests
@@ -22,7 +15,7 @@ const setup = () => {
       <MemoProvider>
         <Save />
         <Temp />
-        <Bottom.Input />
+        <InputArea.Input />
         {/* <App /> */}
       </MemoProvider>
       {/* </ToggleProvider> */}
@@ -33,7 +26,7 @@ const setup = () => {
 describe("<Input />", () => {
   test("Input의 Submit버튼은 text 값이 있을 경우 활성화 됩니다.", async () => {
     setup();
-    const submitButton = screen.getByTestId("memo-submit");
+    const submitButton = screen.getByTestId("input-submit");
     const inputTextEl =
       screen.getByPlaceholderText("당신의 경험을 메모해주세요");
 
@@ -50,7 +43,7 @@ describe("<Input />", () => {
 
 describe("<Temp />", () => {
   const Temp등록 = async (tempname: string) => {
-    const submitButton = screen.getByTestId("memo-submit");
+    const submitButton = screen.getByTestId("input-submit");
     const inputTextEl =
       screen.getByPlaceholderText("당신의 경험을 메모해주세요");
     await fireEvent.change(inputTextEl, { target: { value: tempname } }); // 입력
