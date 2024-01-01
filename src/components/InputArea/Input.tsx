@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import SendImage from "@/assets/send.svg";
 import { useMemoContext } from "@/contexts/memo";
+import { useToggleContext } from "@/contexts/toggle";
+import { useSearchContext } from "@/contexts/search";
 
 const InputWarp = styled.form`
   width: 90%;
@@ -32,22 +34,38 @@ const Submit = styled.input`
 `;
 
 function Input() {
-  const context = useMemoContext();
+  const memo = useMemoContext();
+  const search = useSearchContext();
+  const toggle = useToggleContext();
+  const FunctionReturnsBasedOnToggle = () => {
+    if (toggle) {
+      return {
+        add: search?.addQuestions,
+        onchange: search?.onChangeInput,
+        text: search?.text,
+      };
+    }
+    return {
+      add: memo?.addTemp,
+      onchange: memo?.onChangeInput,
+      text: memo?.text,
+    };
+  };
 
   return (
-    <InputWarp onSubmit={context?.addTemp}>
+    <InputWarp onSubmit={FunctionReturnsBasedOnToggle().add}>
       <Text
         placeholder="당신의 경험을 메모해주세요"
         type="text"
-        onChange={context?.onChangeInput}
-        value={context?.text}
+        onChange={FunctionReturnsBasedOnToggle().onchange}
+        value={FunctionReturnsBasedOnToggle().text}
       ></Text>
       <Submit
         type="Image"
         src={SendImage}
         name="submit"
         alt="메모 입력 버튼"
-        disabled={context?.text ? false : true}
+        disabled={FunctionReturnsBasedOnToggle().text ? false : true}
         data-testid="input-submit"
       ></Submit>
     </InputWarp>
