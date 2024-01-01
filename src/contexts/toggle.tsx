@@ -11,6 +11,7 @@ const ToggleContext = createContext<ToggleType | null>(null);
 
 function ToggleProvider({ children }: { children: React.ReactNode }) {
   const [toggle, setToggle] = useState<boolean>(false);
+  //false : 메모, true : 검색
 
   const handleClickToggle = () => {
     setToggle(!toggle);
