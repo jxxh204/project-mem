@@ -7,13 +7,17 @@ import Search from "./Search";
 function Body() {
   const context = useToggleContext();
 
-  return context.toggle ? (
-    <Search />
-  ) : (
-    <Memo>
-      <Save />
-      <Temp />
-    </Memo>
+  return (
+    <>
+      {context.toggle ? (
+        <Search />
+      ) : (
+        <Memo>
+          <Save />
+          <Temp />
+        </Memo>
+      )}
+    </>
   );
 }
 

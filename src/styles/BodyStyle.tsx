@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const UlStyle = styled.ul`
-  /* width: 100%; */
   font-size: 16px;
   padding: 15px;
   display: flex;
@@ -10,7 +9,7 @@ export const UlStyle = styled.ul`
   flex-wrap: wrap;
 `;
 
-export const BorderBoxStyle = styled.article`
+export const BorderBoxStyle = styled.div`
   width: 100%;
   background-color: white;
   color: ${({ theme }) => theme.color.darkGray};
