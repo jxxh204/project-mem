@@ -8,7 +8,7 @@ const AppWrapperStyle = styled.div`
   width: 100%;
   height: 100%;
 `;
-const MaxWidth = styled.div`
+export const MaxWidth = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

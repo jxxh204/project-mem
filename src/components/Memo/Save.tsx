@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useMemoContext } from "@/contexts/memo";
+import { ColorBoxStyle, UlStyle } from "@/styles/BodyStyle";
 
 const SaveStyle = styled.article`
   display: flex;
@@ -7,19 +8,13 @@ const SaveStyle = styled.article`
   gap: 14px;
   width: 100%;
   font-size: 16px;
-  div {
-    width: 100%;
-    background-color: ${({ theme }) => theme.color.light};
-    color: ${({ theme }) => theme.color.darkGray};
-    border-radius: 15px;
-  }
-  ul {
+  /* ul {
     list-style-type: none;
     display: flex;
     flex-direction: column;
     gap: 14px;
     padding: 15px;
-  }
+  } */
 `;
 
 const TextStyle = styled.li``;
@@ -34,9 +29,9 @@ function Save() {
   return (
     <SaveStyle data-testid="saveList">
       {context?.saveText.map((value, index) => (
-        <div key={"saveParagraph" + index}>
-          <ul>{mappingValue(value)}</ul>
-        </div>
+        <ColorBoxStyle key={"saveParagraph" + index}>
+          <UlStyle>{mappingValue(value)}</UlStyle>
+        </ColorBoxStyle>
       ))}
     </SaveStyle>
   );
