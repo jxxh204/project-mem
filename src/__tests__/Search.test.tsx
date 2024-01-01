@@ -1,12 +1,10 @@
-import { fireEvent, getByRole, screen } from "@testing-library/dom";
+import { fireEvent, screen } from "@testing-library/dom";
 import { ThemeProvider } from "styled-components";
 import Theme from "@/styles/theme";
-import Save from "@/components/Memo/Save";
-import Temp from "@/components/Memo/Temp";
-import InputArea from "@/components/InputArea";
 import { render } from "@testing-library/react";
 import { ToggleProvider } from "@/contexts/toggle";
 import { SearchProvider } from "@/contexts/search";
+import Body from "@/components/Body";
 
 describe("<Search />", () => {
   const setup = () => {
@@ -14,14 +12,13 @@ describe("<Search />", () => {
       <ThemeProvider theme={Theme}>
         <ToggleProvider>
           <SearchProvider>
-            <Save />
-            <Temp />
-            <InputArea.Input />
+            <Body toggle={true} />
           </SearchProvider>
         </ToggleProvider>
       </ThemeProvider>
     );
   };
+
   const 값입력 = async (value: string) => {
     const submitButton = screen.getByTestId("input-submit");
     const inputTextEl =
@@ -30,7 +27,7 @@ describe("<Search />", () => {
     expect(submitButton).toBeDisabled(); //버튼 비활성화
 
     await fireEvent.change(inputTextEl, { target: { value } }); // 입력
-    expect(inputTextEl).toHaveValue("검색 입력값"); // 입력확인
+    expect(inputTextEl).toHaveValue(value); // 입력확인
     return {
       submitButton,
       inputTextEl,

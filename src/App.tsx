@@ -2,12 +2,9 @@ import AppWrapper from "./components/AppWrapper";
 import Bottom from "./components/InputArea";
 
 // import Login from "./components/Login";
-import Save from "./components/Memo/Save";
-import Memo from "./components/Memo";
-import Temp from "./components/Memo/Temp";
 import Toggle from "./components/Toggle";
-import Search from "./components/Search";
 import { useToggleContext } from "./contexts/toggle";
+import Body from "./components/Body";
 // import { useEffect, useState } from "react";
 
 function App() {
@@ -28,15 +25,8 @@ function App() {
       <Toggle />
 
       {/* {!isLogin ? <Login /> : null} */}
-      {/* Body */}
-      {context.toggle ? (
-        <Search></Search>
-      ) : (
-        <Memo>
-          <Save />
-          <Temp />
-        </Memo>
-      )}
+      {/* Head / Body로 나누어야할지? */}
+      <Body toggle={context.toggle} />
 
       {/* {isLogin ? ( */}
       <Bottom>

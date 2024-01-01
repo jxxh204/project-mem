@@ -3,22 +3,23 @@ import userEvent from "@testing-library/user-event";
 import { MemoProvider } from "@/contexts/memo";
 import { ThemeProvider } from "styled-components";
 import Theme from "@/styles/theme";
-import Temp from "@/components/Memo/Temp";
 import InputArea from "@/components/InputArea";
-import Save from "@/components/Memo/Save";
+import { SearchProvider } from "@/contexts/search";
+import { ToggleProvider } from "@/contexts/toggle";
+import Body from "@/components/Body";
 
 // Tests
 const setup = () => {
   return render(
     <ThemeProvider theme={Theme}>
-      {/* <ToggleProvider> */}
-      <MemoProvider>
-        <Save />
-        <Temp />
-        <InputArea.Input />
-        {/* <App /> */}
-      </MemoProvider>
-      {/* </ToggleProvider> */}
+      <ToggleProvider>
+        <MemoProvider>
+          <SearchProvider>
+            <Body toggle={false} />
+            <InputArea.Input />
+          </SearchProvider>
+        </MemoProvider>
+      </ToggleProvider>
     </ThemeProvider>
   );
 };
