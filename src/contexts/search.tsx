@@ -3,7 +3,6 @@ import { createContext, useContext, useState } from "react";
 type SearchType = {
   questions: string[];
   text: string;
-  setQuestions: React.Dispatch<React.SetStateAction<string[]>>;
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addQuestions: (e: React.FormEvent<HTMLFormElement>) => void;
 };
@@ -23,7 +22,7 @@ function SearchProvider({ children }: { children: React.ReactNode }) {
   };
   return (
     <searchContext.Provider
-      value={{ questions, text, setQuestions, onChangeInput, addQuestions }}
+      value={{ questions, text, onChangeInput, addQuestions }}
     >
       {children}
     </searchContext.Provider>

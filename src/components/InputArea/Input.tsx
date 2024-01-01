@@ -33,41 +33,41 @@ const Submit = styled.input`
   }
 `;
 
+// 성능이슈 있을지 확인해보기.
 function Input() {
   const memo = useMemoContext();
   const search = useSearchContext();
-  const toggle = useToggleContext();
-  const FunctionReturnsBasedOnToggle = () => {
-    if (toggle) {
-      return {
-        add: search?.addQuestions,
-        onchange: search?.onChangeInput,
-        text: search?.text,
-      };
-    }
-    return {
-      add: memo?.addTemp,
-      onchange: memo?.onChangeInput,
-      text: memo?.text,
-    };
-  };
+  const { toggle } = useToggleContext();
 
   return (
-    <InputWarp onSubmit={FunctionReturnsBasedOnToggle().add}>
+    <InputWarp onSubmit={toggle ? search?.addQuestions : memo?.addTemp}>
       <Text
-        placeholder="당신의 경험을 메모해주세요"
+        placeholder={
+          toggle ? "당신의 경험을 검색해주세요" : "당신의 경험을 메모해주세요"
+        }
         type="text"
-        onChange={FunctionReturnsBasedOnToggle().onchange}
-        value={FunctionReturnsBasedOnToggle().text}
+        onChange={toggle ? search?.onChangeInput : memo?.onChangeInput}
+        value={toggle ? search?.text : memo?.text}
       ></Text>
-      <Submit
-        type="Image"
-        src={SendImage}
-        name="submit"
-        alt="메모 입력 버튼"
-        disabled={FunctionReturnsBasedOnToggle().text ? false : true}
-        data-testid="input-submit"
-      ></Submit>
+      {toggle ? (
+        <Submit
+          type="Image"
+          src={SendImage}
+          name="submit"
+          alt="메모 입력 버튼"
+          disabled={search?.text ? false : true}
+          data-testid="input-submit"
+        ></Submit>
+      ) : (
+        <Submit
+          type="Image"
+          src={SendImage}
+          name="submit"
+          alt="메모 입력 버튼"
+          disabled={memo?.text ? false : true}
+          data-testid="input-submit"
+        ></Submit>
+      )}
     </InputWarp>
   );
 }

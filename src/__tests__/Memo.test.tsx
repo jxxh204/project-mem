@@ -3,10 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { MemoProvider } from "@/contexts/memo";
 import { ThemeProvider } from "styled-components";
 import Theme from "@/styles/theme";
-import InputArea from "@/components/InputArea";
 import { SearchProvider } from "@/contexts/search";
 import { ToggleProvider } from "@/contexts/toggle";
-import Body from "@/components/Body";
+import App from "@/App";
 
 // Tests
 const setup = () => {
@@ -15,8 +14,7 @@ const setup = () => {
       <ToggleProvider>
         <MemoProvider>
           <SearchProvider>
-            <Body toggle={false} />
-            <InputArea.Input />
+            <App />
           </SearchProvider>
         </MemoProvider>
       </ToggleProvider>

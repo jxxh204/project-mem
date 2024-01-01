@@ -46,12 +46,12 @@ function Toggle() {
   const context = useToggleContext();
 
   return (
-    <ToggleWrap onClick={context.handleClickToggle}>
+    <ToggleWrap onClick={context.handleClickToggle} data-testid="toggle">
       <ToggleStyle>
         <p>
           <span>메모</span> <span>검색</span>
         </p>
-        <ToggleColor $isToggleClick={context.toggle} data-testid="toggle" />
+        <ToggleColor $isToggleClick={context.toggle} />
       </ToggleStyle>
     </ToggleWrap>
   );
