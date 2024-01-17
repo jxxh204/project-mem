@@ -1,9 +1,9 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 
 type ContextType = {
-  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeInput: <T>(e: React.ChangeEvent<T>) => void;
   text: string;
-  addTemp: (e: React.FormEvent<HTMLFormElement>) => void;
+  addTemp: <T>(e: React.FormEvent<T>) => void;
   tempText: string[];
   saveText: Array<string>[];
   confirmTemp: (text: string) => void;
@@ -22,16 +22,17 @@ function MemoProvider({ children }: { children: ReactNode }) {
     setTempText([]);
     setSaveText([...saveText, tempText]);
   };
-  const addTemp = (e: React.FormEvent<HTMLFormElement>) => {
+  const addTemp = (e: React.FormEvent<any>) => {
     e.preventDefault();
     // const textElement = e.currentTarget[0] as HTMLInputElement;
     confirmTemp(text);
     // textElement.value = "";
     setText("");
   };
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setText(e.target.value);
 
+  const onChangeInput = (e: React.ChangeEvent<any>) => {
+    setText(e.target.value);
+  };
   return (
     <MemoContext.Provider
       value={{

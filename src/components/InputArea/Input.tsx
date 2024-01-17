@@ -3,8 +3,11 @@ import SendImage from "@/assets/send.svg";
 import { useMemoContext } from "@/contexts/memo";
 import { useToggleContext } from "@/contexts/toggle";
 import { useSearchContext } from "@/contexts/search";
-
-const InputWarp = styled.form`
+import { useState } from "react";
+type TextType = {
+  $hasLineBreakNow: boolean;
+};
+const Form = styled.form`
   width: 90%;
   height: 58px;
   display: flex;
@@ -13,19 +16,24 @@ const InputWarp = styled.form`
   border-radius: 15px;
   background-color: white;
 `;
-const Text = styled.input`
+const Text = styled.textarea<TextType>`
   background-color: white;
   border-radius: 15px 0px 0px 15px;
   border: none;
   width: 100%;
   font-size: 16px;
-  padding: 0px 16px;
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+
   color: ${({ theme }) => theme.color.darkGray};
+
+  resize: none;
 `;
 const Submit = styled.input`
   border-radius: 0px 15px 15px 0px;
-  padding: 15px;
   border: none;
+  padding: 15px;
 
   &:disabled {
     filter: invert(90%) sepia(12%) saturate(282%) hue-rotate(189deg)
@@ -39,15 +47,32 @@ function Input() {
   const search = useSearchContext();
   const { toggle } = useToggleContext();
 
+  // index.tsx로 도려내기 vs search, memo input을 합치기?
+  // 리팩터링 필요
+
+  const onInputHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    toggle ? search?.onChangeInput(e) : memo?.onChangeInput(e);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    //Enter 버튼 적용되도록.
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      toggle ? search?.addQuestions(e) : memo?.addTemp(e);
+    }
+  };
+  // 리팩터링 필요
+
   return (
-    <InputWarp onSubmit={toggle ? search?.addQuestions : memo?.addTemp}>
+    <Form onSubmit={toggle ? search?.addQuestions : memo?.addTemp}>
       <Text
         placeholder={
           toggle ? "당신의 경험을 검색해주세요" : "당신의 경험을 메모해주세요"
         }
-        type="text"
-        onChange={toggle ? search?.onChangeInput : memo?.onChangeInput}
+        onInput={onInputHandler}
+        onKeyDown={handleKeyDown}
         value={toggle ? search?.text : memo?.text}
+        rows={3}
       ></Text>
       {toggle ? (
         <Submit
@@ -68,7 +93,7 @@ function Input() {
           data-testid="input-submit"
         ></Submit>
       )}
-    </InputWarp>
+    </Form>
   );
 }
 

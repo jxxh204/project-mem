@@ -3,8 +3,8 @@ import { createContext, useContext, useState } from "react";
 type SearchType = {
   questions: string[];
   text: string;
-  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  addQuestions: (e: React.FormEvent<HTMLFormElement>) => void;
+  onChangeInput: <T>(e: React.ChangeEvent<T>) => void;
+  addQuestions: <T>(e: React.FormEvent<T>) => void;
 };
 
 const searchContext = createContext<null | SearchType>(null);
@@ -12,10 +12,10 @@ const searchContext = createContext<null | SearchType>(null);
 function SearchProvider({ children }: { children: React.ReactNode }) {
   const [text, setText] = useState("");
   const [questions, setQuestions] = useState<string[]>([]);
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeInput = (e: React.ChangeEvent<any>) => {
     setText(e.target.value);
   };
-  const addQuestions = (e: React.FormEvent<HTMLFormElement>) => {
+  const addQuestions = (e: React.FormEvent<any>) => {
     e.preventDefault();
     setQuestions([...questions, text]);
     setText("");
