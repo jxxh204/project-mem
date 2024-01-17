@@ -3,10 +3,7 @@ import SendImage from "@/assets/send.svg";
 import { useMemoContext } from "@/contexts/memo";
 import { useToggleContext } from "@/contexts/toggle";
 import { useSearchContext } from "@/contexts/search";
-import { useState } from "react";
-type TextType = {
-  $hasLineBreakNow: boolean;
-};
+
 const Form = styled.form`
   width: 90%;
   height: 58px;
@@ -16,7 +13,7 @@ const Form = styled.form`
   border-radius: 15px;
   background-color: white;
 `;
-const Text = styled.textarea<TextType>`
+const Text = styled.textarea`
   background-color: white;
   border-radius: 15px 0px 0px 15px;
   border: none;
