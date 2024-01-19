@@ -64,7 +64,7 @@ function Input() {
     <Form onSubmit={toggle ? search?.addQuestions : memo?.addTemp}>
       <Text
         placeholder={
-          toggle ? "당신의 경험을 검색해주세요" : "당신의 경험을 메모해주세요"
+          toggle ? "당신의 경험을 검색해 주세요" : "당신의 경험을 메모해 주세요"
         }
         onInput={onInputHandler}
         onKeyDown={handleKeyDown}

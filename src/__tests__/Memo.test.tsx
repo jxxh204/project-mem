@@ -32,7 +32,7 @@ describe("<Input />", () => {
   test("Input의 Submit버튼은 text 값이 있을 경우 활성화 됩니다.", async () => {
     setup();
     const submitButton = screen.getByTestId("input-submit");
-    const textArea = screen.getByPlaceholderText("당신의 경험을 메모해주세요");
+    const textArea = screen.getByPlaceholderText("당신의 경험을 메모해 주세요");
 
     expect(submitButton).toBeDisabled(); //버튼 비활성화
 
@@ -51,7 +51,7 @@ describe("<Temp />", () => {
   const Temp등록 = async (tempname: string) => {
     const submitButton = screen.getByTestId("input-submit");
     const inputTextEl =
-      screen.getByPlaceholderText("당신의 경험을 메모해주세요");
+      screen.getByPlaceholderText("당신의 경험을 메모해 주세요");
     userEvent.type(inputTextEl, tempname).then(() => {
       expect(inputTextEl).toHaveValue(tempname); // 입력확인
     });
