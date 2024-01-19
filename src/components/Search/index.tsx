@@ -1,19 +1,7 @@
 import { useSearchContext } from "@/contexts/search";
 import styled from "styled-components";
-import { MaxWidth } from "../AppWrapper";
 import { BorderBoxStyle, ColorBoxStyle, UlStyle } from "@/styles/BodyStyle";
 
-const SearchStyle = styled(MaxWidth)`
-  /* mobile :  280*/
-  /* width: 100%; */
-  /* max-width: 480px; */
-
-  /* align-items: end; */
-
-  /* ul {
-    width: 100%;
-  } */
-`;
 const ListStyle = styled(UlStyle)`
   padding: 0px;
   width: 100%;
@@ -48,7 +36,7 @@ const ReplyStyle = styled(ColorBoxStyle)`
 function Search() {
   const context = useSearchContext();
   return (
-    <SearchStyle data-testid="search-head">
+    <>
       <ListStyle>
         {context?.questions.map((q, index) => (
           <>
@@ -61,7 +49,7 @@ function Search() {
           </>
         ))}
       </ListStyle>
-    </SearchStyle>
+    </>
   );
 }
 

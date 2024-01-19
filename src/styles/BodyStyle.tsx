@@ -10,7 +10,7 @@ export const UlStyle = styled.ul`
 `;
 
 export const BorderBoxStyle = styled.div`
-  width: 100%;
+  width: 99%; // 보더가 가려져서 아마 보더가 0.5px이라 그런듯.
   background-color: white;
   color: ${({ theme }) => theme.color.darkGray};
   border: solid 1px ${({ theme }) => theme.color.main};

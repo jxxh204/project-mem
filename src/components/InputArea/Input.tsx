@@ -26,6 +26,10 @@ const Text = styled.textarea`
   color: ${({ theme }) => theme.color.darkGray};
 
   resize: none;
+  outline: none;
+  &:focus {
+    outline: solid 2px #fe6b8b;
+  }
 `;
 const Submit = styled.input`
   border-radius: 0px 15px 15px 0px;
