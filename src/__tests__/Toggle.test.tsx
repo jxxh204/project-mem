@@ -25,11 +25,11 @@ describe("<Toggle />", () => {
       </ThemeProvider>
     );
     const toggle = await screen.getByTestId("toggle");
-    const memo = await screen.getByTestId("memo-head");
+    const memo = await screen.getByTestId("body-head");
 
     expect(memo).toBeDefined();
     await userEvent.click(toggle);
-    const search = await screen.getByTestId("search-head");
+    const search = await screen.getByTestId("body-head");
 
     expect(search).toBeDefined();
   });

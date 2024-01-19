@@ -29,6 +29,14 @@ const setup = () => {
 };
 //test의 dom상태는 유지된다.
 describe("<Input />", () => {
+  test("Input을 클릭할 경우 css가 제대로 변경되는 지", async () => {
+    setup();
+    const textArea = screen.getByPlaceholderText("당신의 경험을 메모해 주세요");
+
+    await userEvent.click(textArea);
+    const textAreaStyle = getComputedStyle(textArea);
+    expect(textAreaStyle.outline).toBe("solid 2px #fe6b8b");
+  });
   test("Input의 Submit버튼은 text 값이 있을 경우 활성화 됩니다.", async () => {
     setup();
     const submitButton = screen.getByTestId("input-submit");
@@ -69,11 +77,6 @@ describe("<Temp />", () => {
     const saveItems = within(saveUl).getAllByRole("listitem");
     return saveItems;
   };
-  // test("Temp가 생성되었는지 확인합니다.", async () => {
-  //   setup();
-  //   const temp = screen.findAllByText("memo1");
-  //   expect(temp).toBeDefined();
-  // });
 
   test("Temp 여러개가 생성되는지 확인하고 등록 버튼작동을 테스트합니다.", async () => {
     setup();

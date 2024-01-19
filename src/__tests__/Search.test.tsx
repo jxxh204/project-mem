@@ -63,7 +63,7 @@ describe("<Search />", () => {
   });
 
   const getList = async () => {
-    const saveUl: HTMLDataListElement = screen.getByTestId("search-head");
+    const saveUl: HTMLDataListElement = screen.getByTestId("body-head");
     const saveItems = within(saveUl).getAllByRole("listitem");
     return saveItems;
   };
