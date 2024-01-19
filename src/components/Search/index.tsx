@@ -1,5 +1,6 @@
 import { useSearchContext } from "@/contexts/search";
 import styled from "styled-components";
+import Mem from "@/assets/mem.svg";
 import { BorderBoxStyle, ColorBoxStyle, UlStyle } from "@/styles/BodyStyle";
 
 const ListStyle = styled(UlStyle)`
@@ -27,6 +28,10 @@ const ReplyWrap = styled.div`
   flex-direction: row;
   justify-content: start;
   text-align: left;
+  align-items: center;
+`;
+const MemImoji = styled.img`
+  height: 70px;
 `;
 const ReplyStyle = styled(ColorBoxStyle)`
   width: auto;
@@ -44,6 +49,7 @@ function Search() {
               <QuestionStyle key={"questions" + index}>{q}</QuestionStyle>
             </QuestionWrap>
             <ReplyWrap>
+              <MemImoji src={Mem} alt="mem 캐릭터 이미지" />
               <ReplyStyle key={"reply" + index}>{q}</ReplyStyle>
             </ReplyWrap>
           </>
