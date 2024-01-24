@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useMemoContext } from "@/contexts/memo";
 import enterImage from "@/assets/enter.svg";
 import { BorderBoxStyle, UlStyle } from "@/styles/BodyStyle";
+import React, { MouseEventHandler } from "react";
 
 const Button = styled.button`
   padding: 8px 16px;
@@ -21,19 +21,21 @@ const TempList = styled(UlStyle)`
     justify-content: end;
   }
 `;
+type Props = {
+  temps: string[] | undefined;
+  handleClick: MouseEventHandler<HTMLButtonElement> | undefined;
+};
 
-function Temp() {
-  const context = useMemoContext();
-
-  if (!context?.tempText.length) return null;
+function Temp({ temps, handleClick }: Props) {
+  if (!temps?.length) return null;
   return (
     <BorderBoxStyle>
       <TempList data-testid="tempList">
-        {context?.tempText.map((text, index) => (
+        {temps?.map((text, index) => (
           <li key={index}>{text}</li>
         ))}
         <li className="imageLi">
-          <Button onClick={context?.onEnterTemp} data-testid="tempButton">
+          <Button onClick={handleClick} data-testid="tempButton">
             <ButtonImg src={enterImage} alt="임시 메모 등록 버튼" />
           </Button>
         </li>
@@ -42,4 +44,4 @@ function Temp() {
   );
 }
 
-export default Temp;
+export default React.memo(Temp);

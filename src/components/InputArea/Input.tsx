@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SendImage from "@/assets/send.svg";
-import { useMemoContext } from "@/contexts/memo";
+import { useMemoContext } from "@/components/Memo/useContext";
 import { useToggleContext } from "@/contexts/toggle";
 import { useSearchContext } from "@/contexts/search";
 

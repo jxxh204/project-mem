@@ -6,7 +6,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoProvider } from "@/contexts/memo";
+import { MemoProvider } from "@/components/Memo/useContext";
 import { ThemeProvider } from "styled-components";
 import Theme from "@/styles/theme";
 import { SearchProvider } from "@/contexts/search";

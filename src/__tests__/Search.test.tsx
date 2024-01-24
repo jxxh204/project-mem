@@ -6,7 +6,7 @@ import { ToggleProvider } from "@/contexts/toggle";
 import { SearchProvider } from "@/contexts/search";
 import App from "@/App";
 import userEvent from "@testing-library/user-event";
-import { MemoProvider } from "@/contexts/memo";
+import { MemoProvider } from "@/components/Memo/useContext";
 
 describe("<Search />", () => {
   const setup = () => {

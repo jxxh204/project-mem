@@ -1,9 +1,10 @@
 import { useToggleContext } from "@/contexts/toggle";
 import Memo from "./Memo";
-import Save from "./Memo/Save";
+import MemorizeSave from "./Memo/Save";
 import Temp from "./Memo/Temp";
 import Search from "./Search";
 import styled from "styled-components";
+import { useMemoContext } from "@/components/Memo/useContext";
 
 const BodyWrapper = styled.section`
   display: flex;
@@ -19,6 +20,7 @@ const BodyWrapper = styled.section`
 
 function Body() {
   const context = useToggleContext();
+  const memoContext = useMemoContext();
 
   // 하나로 감싸야할듯.
   return (
@@ -27,8 +29,11 @@ function Body() {
         <Search />
       ) : (
         <Memo>
-          <Save />
-          <Temp />
+          <MemorizeSave saves={memoContext?.memorizeSave} />
+          <Temp
+            temps={memoContext?.memorizeTemp}
+            handleClick={memoContext?.memorizeOnEnterTemp}
+          />
         </Memo>
       )}
     </BodyWrapper>

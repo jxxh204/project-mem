@@ -1,12 +1,20 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 
 type ContextType = {
   onChangeInput: <T>(e: React.ChangeEvent<T>) => void;
   text: string;
   onClickHandler: <T>(e: React.MouseEvent<T>) => void;
-  tempText: string[];
-  saveText: Array<string>[];
-  onEnterTemp: React.MouseEventHandler<HTMLButtonElement>;
+  memorizeTemp: string[];
+  memorizeSave: string[][];
+  memorizeOnEnterTemp: () => void;
+  // React.MouseEventHandler<HTMLButtonElement>
   keyDownHandler: (e: React.KeyboardEvent) => void;
 };
 const MemoContext = createContext<ContextType | null>(null);
@@ -16,11 +24,19 @@ function MemoProvider({ children }: { children: ReactNode }) {
   const [tempText, setTempText] = useState<string[]>([]);
   const [saveText, setSaveText] = useState<Array<string>[]>([]);
 
-  const onEnterTemp = () => {
+  const memorizeOnEnterTemp = useCallback(() => {
     // save 추가
     setTempText([]);
     setSaveText([...saveText, tempText]);
-  };
+  }, [saveText, tempText]);
+  const memorizeTemp = useMemo(() => {
+    return tempText;
+  }, [tempText]);
+
+  const memorizeSave = useMemo(() => {
+    return saveText;
+  }, [saveText]);
+
   const addTemp = (e: React.FormEvent<any>) => {
     if (text === "") {
       alert("텍스트를 입력해주세요.");
@@ -50,11 +66,11 @@ function MemoProvider({ children }: { children: ReactNode }) {
     <MemoContext.Provider
       value={{
         text,
-        tempText,
-        saveText,
+        memorizeTemp,
+        memorizeSave,
         onChangeInput,
         onClickHandler,
-        onEnterTemp,
+        memorizeOnEnterTemp,
         keyDownHandler,
       }}
     >

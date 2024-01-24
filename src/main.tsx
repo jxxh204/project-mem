@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import Theme from "./styles/theme.ts";
 import GlobalStyle from "./styles/GlobalStyle.tsx";
 import { ToggleProvider } from "./contexts/toggle.tsx";
-import { MemoProvider } from "./contexts/memo.tsx";
+import { MemoProvider } from "./components/Memo/useContext.tsx";
 import { SearchProvider } from "./contexts/search.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

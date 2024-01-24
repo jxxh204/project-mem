@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useMemoContext } from "@/contexts/memo";
 import { ColorBoxStyle, UlStyle } from "@/styles/BodyStyle";
+import React from "react";
 
 const SaveStyle = styled.article`
   display: flex;
@@ -8,33 +8,22 @@ const SaveStyle = styled.article`
   gap: 14px;
   width: 100%;
   font-size: 16px;
-  /* ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 15px;
-  } */
 `;
 
-const TextStyle = styled.li``;
+type Props = {
+  saves: string[][] | undefined;
+};
 
-function Save() {
-  const context = useMemoContext();
-  const mappingValue = (value: string[]) => {
-    return value.map((text, index) => (
-      <TextStyle key={"saveText" + index}>{text}</TextStyle>
-    ));
-  };
+function Save({ saves }: Props) {
   return (
     <SaveStyle data-testid="saveList">
-      {context?.saveText.map((value, index) => (
+      {saves?.map((value, index) => (
         <ColorBoxStyle key={"saveParagraph" + index}>
-          <UlStyle>{mappingValue(value)}</UlStyle>
+          <UlStyle>{value}</UlStyle>
         </ColorBoxStyle>
       ))}
     </SaveStyle>
   );
 }
 
-export default Save;
+export default React.memo(Save);
