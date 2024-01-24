@@ -67,17 +67,17 @@ function Input() {
           alt="메모 입력 버튼"
           disabled={search?.text ? false : true}
           data-testid="input-submit"
-          onClick={memo?.addTemp}
+          onClick={search?.onClickHandler}
         ></Submit>
       ) : (
         <Submit
           type="Image"
           src={SendImage}
           name="submit"
-          alt="메모 입력 버튼"
+          alt="검색 입력 버튼"
           disabled={memo?.text ? false : true}
           data-testid="input-submit"
-          onClick={search?.addQuestions}
+          onClick={memo?.onClickHandler}
         ></Submit>
       )}
     </Form>

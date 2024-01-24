@@ -3,7 +3,7 @@ import { ReactNode, createContext, useContext, useState } from "react";
 type ContextType = {
   onChangeInput: <T>(e: React.ChangeEvent<T>) => void;
   text: string;
-  addTemp: <T>(e: React.FormEvent<T>) => void;
+  onClickHandler: <T>(e: React.MouseEvent<T>) => void;
   tempText: string[];
   saveText: Array<string>[];
   onEnterTemp: React.MouseEventHandler<HTMLButtonElement>;
@@ -22,10 +22,17 @@ function MemoProvider({ children }: { children: ReactNode }) {
     setSaveText([...saveText, tempText]);
   };
   const addTemp = (e: React.FormEvent<any>) => {
+    if (text === "") {
+      alert("텍스트를 입력해주세요.");
+      return;
+    }
     // temp 추가
     e.preventDefault();
     setTempText([...tempText, text]);
     setText("");
+  };
+  const onClickHandler = (e: React.MouseEvent<any>) => {
+    addTemp(e);
   };
   const onChangeInput = (e: React.ChangeEvent<any>) => {
     setText(e.target.value);
@@ -42,11 +49,11 @@ function MemoProvider({ children }: { children: ReactNode }) {
   return (
     <MemoContext.Provider
       value={{
-        onChangeInput,
         text,
-        addTemp,
         tempText,
         saveText,
+        onChangeInput,
+        onClickHandler,
         onEnterTemp,
         keyDownHandler,
       }}
