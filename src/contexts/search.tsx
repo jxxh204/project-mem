@@ -5,6 +5,7 @@ type SearchType = {
   text: string;
   onChangeInput: <T>(e: React.ChangeEvent<T>) => void;
   addQuestions: <T>(e: React.FormEvent<T>) => void;
+  keyDownHandler: (e: React.KeyboardEvent) => void;
 };
 
 const searchContext = createContext<null | SearchType>(null);
@@ -20,9 +21,13 @@ function SearchProvider({ children }: { children: React.ReactNode }) {
     setQuestions([...questions, text]);
     setText("");
   };
+  const keyDownHandler = (e: React.KeyboardEvent) => {
+    onChangeInput(e);
+    if (e.key === "Enter" && !e.shiftKey) addQuestions(e);
+  };
   return (
     <searchContext.Provider
-      value={{ questions, text, onChangeInput, addQuestions }}
+      value={{ questions, text, onChangeInput, addQuestions, keyDownHandler }}
     >
       {children}
     </searchContext.Provider>

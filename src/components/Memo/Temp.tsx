@@ -33,7 +33,7 @@ function Temp() {
           <li key={index}>{text}</li>
         ))}
         <li className="imageLi">
-          <Button onClick={context?.onClickEnterTemp} data-testid="tempButton">
+          <Button onClick={context?.onEnterTemp} data-testid="tempButton">
             <ButtonImg src={enterImage} alt="임시 메모 등록 버튼" />
           </Button>
         </li>

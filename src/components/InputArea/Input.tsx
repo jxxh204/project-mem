@@ -13,7 +13,7 @@ const Form = styled.form`
   border-radius: 15px;
   background-color: white;
 `;
-const Text = styled.textarea`
+const Textarea = styled.textarea`
   background-color: white;
   border-radius: 15px 0px 0px 15px;
   border: none;
@@ -48,33 +48,17 @@ function Input() {
   const search = useSearchContext();
   const { toggle } = useToggleContext();
 
-  // index.tsx로 도려내기 vs search, memo input을 합치기?
-  // 리팩터링 필요
-
-  const onInputHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    toggle ? search?.onChangeInput(e) : memo?.onChangeInput(e);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    //Enter 버튼 적용되도록.
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      toggle ? search?.addQuestions(e) : memo?.addTemp(e);
-    }
-  };
-  // 리팩터링 필요
-
   return (
-    <Form onSubmit={toggle ? search?.addQuestions : memo?.addTemp}>
-      <Text
+    <Form>
+      <Textarea
         placeholder={
           toggle ? "당신의 경험을 검색해 주세요" : "당신의 경험을 메모해 주세요"
         }
-        onInput={onInputHandler}
-        onKeyDown={handleKeyDown}
+        onInput={toggle ? search?.onChangeInput : memo?.onChangeInput}
+        onKeyDown={toggle ? search?.keyDownHandler : memo?.keyDownHandler}
         value={toggle ? search?.text : memo?.text}
         rows={3}
-      ></Text>
+      ></Textarea>
       {toggle ? (
         <Submit
           type="Image"
@@ -83,6 +67,7 @@ function Input() {
           alt="메모 입력 버튼"
           disabled={search?.text ? false : true}
           data-testid="input-submit"
+          onClick={memo?.addTemp}
         ></Submit>
       ) : (
         <Submit
@@ -92,6 +77,7 @@ function Input() {
           alt="메모 입력 버튼"
           disabled={memo?.text ? false : true}
           data-testid="input-submit"
+          onClick={search?.addQuestions}
         ></Submit>
       )}
     </Form>

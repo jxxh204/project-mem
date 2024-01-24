@@ -6,8 +6,8 @@ type ContextType = {
   addTemp: <T>(e: React.FormEvent<T>) => void;
   tempText: string[];
   saveText: Array<string>[];
-  confirmTemp: (text: string) => void;
-  onClickEnterTemp: React.MouseEventHandler<HTMLButtonElement>;
+  onEnterTemp: React.MouseEventHandler<HTMLButtonElement>;
+  keyDownHandler: (e: React.KeyboardEvent) => void;
 };
 const MemoContext = createContext<ContextType | null>(null);
 
@@ -15,23 +15,29 @@ function MemoProvider({ children }: { children: ReactNode }) {
   const [text, setText] = useState<string>("");
   const [tempText, setTempText] = useState<string[]>([]);
   const [saveText, setSaveText] = useState<Array<string>[]>([]);
-  const confirmTemp = (text: string) => {
-    setTempText([...tempText, text]);
-  };
-  const onClickEnterTemp = () => {
+
+  const onEnterTemp = () => {
+    // save 추가
     setTempText([]);
     setSaveText([...saveText, tempText]);
   };
   const addTemp = (e: React.FormEvent<any>) => {
+    // temp 추가
     e.preventDefault();
-    // const textElement = e.currentTarget[0] as HTMLInputElement;
-    confirmTemp(text);
-    // textElement.value = "";
+    setTempText([...tempText, text]);
     setText("");
   };
-
   const onChangeInput = (e: React.ChangeEvent<any>) => {
     setText(e.target.value);
+  };
+  const keyDownHandler = (e: React.KeyboardEvent) => {
+    if (
+      e.key === "Enter" &&
+      !e.shiftKey &&
+      e.nativeEvent.isComposing === false
+    ) {
+      addTemp(e);
+    }
   };
   return (
     <MemoContext.Provider
@@ -40,9 +46,9 @@ function MemoProvider({ children }: { children: ReactNode }) {
         text,
         addTemp,
         tempText,
-        confirmTemp,
         saveText,
-        onClickEnterTemp,
+        onEnterTemp,
+        keyDownHandler,
       }}
     >
       {children}
