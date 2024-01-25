@@ -1,10 +1,11 @@
 import { useToggleContext } from "@/contexts/toggle";
 import Memo from "./Memo";
 import MemorizeSave from "./Memo/Save";
-import Temp from "./Memo/Temp";
-import Search from "./Search";
+import MemorizeTemp from "./Memo/Temp";
+import MemorizeSearch from "./Search";
 import styled from "styled-components";
 import { useMemoContext } from "@/components/Memo/useContext";
+import { useSearchContext } from "@/components/Search/useContext";
 
 const BodyWrapper = styled.section`
   display: flex;
@@ -21,17 +22,18 @@ const BodyWrapper = styled.section`
 function Body() {
   const context = useToggleContext();
   const memoContext = useMemoContext();
+  const searchContext = useSearchContext();
 
   // 하나로 감싸야할듯.
   return (
     <BodyWrapper data-testid="body-head">
       {context.toggle ? (
-        <Search />
+        <MemorizeSearch questions={searchContext?.questions} />
       ) : (
         <Memo>
-          <MemorizeSave saves={memoContext?.memorizeSave} />
-          <Temp
-            temps={memoContext?.memorizeTemp}
+          <MemorizeSave saves={memoContext?.saveText} />
+          <MemorizeTemp
+            temps={memoContext?.tempText}
             handleClick={memoContext?.memorizeOnEnterTemp}
           />
         </Memo>

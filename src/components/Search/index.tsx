@@ -1,7 +1,8 @@
-import { useSearchContext } from "@/contexts/search";
+import { useSearchContext } from "@/components/Search/useContext";
 import styled from "styled-components";
 import Mem from "@/assets/mem.svg";
 import { BorderBoxStyle, ColorBoxStyle, UlStyle } from "@/styles/BodyStyle";
+import React from "react";
 
 const ListStyle = styled(UlStyle)`
   padding: 0px;
@@ -38,12 +39,14 @@ const ReplyStyle = styled(ColorBoxStyle)`
   padding: 15px;
 `;
 
-function Search() {
-  const context = useSearchContext();
+type Props = {
+  questions: string[] | undefined;
+};
+function Search({ questions }: Props) {
   return (
     <>
       <ListStyle>
-        {context?.questions.map((q, index) => (
+        {questions?.map((q, index) => (
           <>
             <QuestionWrap>
               <QuestionStyle key={"questions" + index}>{q}</QuestionStyle>
@@ -59,4 +62,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default React.memo(Search);

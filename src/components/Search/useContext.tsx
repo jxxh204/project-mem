@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
 type SearchType = {
   questions: string[];
@@ -32,7 +32,13 @@ function SearchProvider({ children }: { children: React.ReactNode }) {
   };
   return (
     <searchContext.Provider
-      value={{ questions, text, onChangeInput, onClickHandler, keyDownHandler }}
+      value={{
+        questions,
+        text,
+        onChangeInput,
+        onClickHandler,
+        keyDownHandler,
+      }}
     >
       {children}
     </searchContext.Provider>

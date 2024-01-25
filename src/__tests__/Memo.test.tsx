@@ -9,7 +9,7 @@ import userEvent from "@testing-library/user-event";
 import { MemoProvider } from "@/components/Memo/useContext";
 import { ThemeProvider } from "styled-components";
 import Theme from "@/styles/theme";
-import { SearchProvider } from "@/contexts/search";
+import { SearchProvider } from "@/components/Search/useContext";
 import { ToggleProvider } from "@/contexts/toggle";
 import App from "@/App";
 

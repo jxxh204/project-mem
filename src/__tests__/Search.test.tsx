@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import Theme from "@/styles/theme";
 import { render } from "@testing-library/react";
 import { ToggleProvider } from "@/contexts/toggle";
-import { SearchProvider } from "@/contexts/search";
+import { SearchProvider } from "@/components/Search/useContext";
 import App from "@/App";
 import userEvent from "@testing-library/user-event";
 import { MemoProvider } from "@/components/Memo/useContext";

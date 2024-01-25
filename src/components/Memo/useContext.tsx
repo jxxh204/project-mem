@@ -3,7 +3,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useMemo,
   useState,
 } from "react";
 
@@ -11,8 +10,8 @@ type ContextType = {
   onChangeInput: <T>(e: React.ChangeEvent<T>) => void;
   text: string;
   onClickHandler: <T>(e: React.MouseEvent<T>) => void;
-  memorizeTemp: string[];
-  memorizeSave: string[][];
+  tempText: string[];
+  saveText: string[][];
   memorizeOnEnterTemp: () => void;
   // React.MouseEventHandler<HTMLButtonElement>
   keyDownHandler: (e: React.KeyboardEvent) => void;
@@ -29,13 +28,6 @@ function MemoProvider({ children }: { children: ReactNode }) {
     setTempText([]);
     setSaveText([...saveText, tempText]);
   }, [saveText, tempText]);
-  const memorizeTemp = useMemo(() => {
-    return tempText;
-  }, [tempText]);
-
-  const memorizeSave = useMemo(() => {
-    return saveText;
-  }, [saveText]);
 
   const addTemp = (e: React.FormEvent<any>) => {
     if (text === "") {
@@ -66,8 +58,8 @@ function MemoProvider({ children }: { children: ReactNode }) {
     <MemoContext.Provider
       value={{
         text,
-        memorizeTemp,
-        memorizeSave,
+        tempText,
+        saveText,
         onChangeInput,
         onClickHandler,
         memorizeOnEnterTemp,

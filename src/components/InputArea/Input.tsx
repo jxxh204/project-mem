@@ -2,7 +2,7 @@ import styled from "styled-components";
 import SendImage from "@/assets/send.svg";
 import { useMemoContext } from "@/components/Memo/useContext";
 import { useToggleContext } from "@/contexts/toggle";
-import { useSearchContext } from "@/contexts/search";
+import { useSearchContext } from "@/components/Search/useContext";
 
 const Form = styled.form`
   width: 90%;

@@ -1,8 +1,10 @@
 import AppWrapper from "./components/AppWrapper";
 import Bottom from "./components/InputArea";
 
+// import Login from "./components/Login";
 import Toggle from "./components/Toggle";
 import Body from "./components/Body";
+// import { useEffect, useState } from "react";
 
 function App() {
   return (
