@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: MEM API
+  description: MEM App을 위한 REST API
+  version: 0.1.0
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /v1/health:
+    get:
+      summary: Health Check
+      description: Health Check
+      operationId: health
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "OK"
+  /v1/memo:
+    post:
+      summary: 메모 생성
+      description: 메모 생성
+      operationId: createMemo
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "메모 내용은 필수입니다."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "인증이 필요합니다."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: "메모 내용"

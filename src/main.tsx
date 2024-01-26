@@ -9,6 +9,11 @@ import { ToggleProvider } from "./contexts/toggle.tsx";
 import { MemoProvider } from "./components/Memo/useContext.tsx";
 import { SearchProvider } from "./components/Search/useContext.tsx";
 
+if (process.env.NODE_ENV === "development") {
+  const { worker } = await import("./mocks/browser.ts");
+  worker.start();
+}
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={Theme}>

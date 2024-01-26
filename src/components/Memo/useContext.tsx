@@ -18,6 +18,7 @@ type ContextType = {
 };
 const MemoContext = createContext<ContextType | null>(null);
 
+//useReducer로 변경할 수 있을 듯.
 function MemoProvider({ children }: { children: ReactNode }) {
   const [text, setText] = useState<string>("");
   const [tempText, setTempText] = useState<string[]>([]);
