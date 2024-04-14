@@ -1,5 +1,5 @@
 import AppWrapper from "./components/AppWrapper";
-import Bottom from "./components/InputArea";
+import Bottom from "./components/Bottom";
 
 // import Login from "./components/Login";
 import Toggle from "./components/Toggle";

@@ -30,6 +30,7 @@ function Body() {
       {context.toggle ? (
         <MemorizeSearch questions={searchContext?.questions} />
       ) : (
+        // body에 있는 게 찾기가 힘들다.
         <Memo>
           <MemorizeSave saves={memoContext?.saveText} />
           <MemorizeTemp

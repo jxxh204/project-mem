@@ -1,8 +1,10 @@
+import MemoHook from "@/hooks/memo";
 import {
   ReactNode,
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -23,6 +25,11 @@ function MemoProvider({ children }: { children: ReactNode }) {
   const [text, setText] = useState<string>("");
   const [tempText, setTempText] = useState<string[]>([]);
   const [saveText, setSaveText] = useState<Array<string>[]>([]);
+  const { Input } = MemoHook();
+
+  useEffect(() => {
+    if (saveText.length > 0) Input(saveText[saveText.length - 1]);
+  }, [saveText]);
 
   const memorizeOnEnterTemp = useCallback(() => {
     // save 추가

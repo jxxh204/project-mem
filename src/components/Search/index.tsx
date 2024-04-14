@@ -1,4 +1,3 @@
-import { useSearchContext } from "@/components/Search/useContext";
 import styled from "styled-components";
 import Mem from "@/assets/mem.svg";
 import { BorderBoxStyle, ColorBoxStyle, UlStyle } from "@/styles/BodyStyle";
@@ -47,7 +46,7 @@ function Search({ questions }: Props) {
     <>
       <ListStyle>
         {questions?.map((q, index) => (
-          <>
+          <li key={"questions" + index}>
             <QuestionWrap>
               <QuestionStyle key={"questions" + index}>{q}</QuestionStyle>
             </QuestionWrap>
@@ -55,7 +54,7 @@ function Search({ questions }: Props) {
               <MemImoji src={Mem} alt="mem 캐릭터 이미지" />
               <ReplyStyle key={"reply" + index}>{q}</ReplyStyle>
             </ReplyWrap>
-          </>
+          </li>
         ))}
       </ListStyle>
     </>
