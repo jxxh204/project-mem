@@ -99,11 +99,12 @@ describe("<Temp />", () => {
     await Temp등록("memo1");
     await Temp등록("memo2");
     await Temp등록("memo3");
+    waitFor(async () => {
+      const tempEnter = await screen.getByTestId("tempButton");
+      userEvent.click(tempEnter);
 
-    const tempEnter = await screen.getByTestId("tempButton");
-    await userEvent.click(tempEnter);
-
-    const saveList = await SaveList();
-    expect(saveList.length).toBe(3);
+      const saveList = await SaveList();
+      expect(saveList.length).toBe(3);
+    });
   });
 });
